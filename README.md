@@ -13,7 +13,7 @@ Backend Explanation: Flask: A lightweight framework to handle the API. RuleEngin
 Frontend (HTML, CSS, JavaScript) This will be a simple frontend that allows users to input rules and context, sends them to the backend, and displays the result.
 Frontend Explanation: HTML Form: Contains two inputs, one for entering the context (as JSON) and another for entering the rule. JavaScript: Fetches the API /evaluate-rule, sends the rule and context as JSON, and displays the result on the page. Styling: Basic styling to make the form look clean and functional. Running the Full Stack Application Backend Setup:
 
-Save the Python code to a file (e.g., app.py). Run the Flask application: cmd python ruleEngine.py Frontend Setup:
+Save the Python code to a file (e.g., app.py). Run the Flask application: cmd python app.py Frontend Setup:
 
 Create an index.html file with the HTML code provided above. Ensure the index.html is served by the Flask backend or use any simple HTTP server (e.g., python -m http.server) to serve the frontend if it’s separate from the Flask app. Test the Application:
 
