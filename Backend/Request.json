@@ -1,0 +1,9 @@
+{
+    "rule": "age > 18 and salary > 30000",
+    "context": {
+        "age": 25,
+        "salary": 50000,
+        "location": "USA",
+        "is_employed": true
+    }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rule Engine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        input, textarea, button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Rule Engine</h1>
+    
+    <label for="context">Context (JSON Format):</label>
+    <textarea id="context" rows="5" placeholder='{"age": 25, "salary": 50000, "location": "USA", "is_employed": true}'></textarea>
+
+    <label for="rule">Rule:</label>
+    <input type="text" id="rule" placeholder="Enter rule, e.g., age > 18 and salary > 30000">
+
+    <button onclick="evaluateRule()">Evaluate Rule</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        async function evaluateRule() {
+            // Get the rule and context from input fields
+            const rule = document.getElementById("rule").value;
+            const context = document.getElementById("context").value;
+
+            // Parse the context as JSON
+            let parsedContext;
+            try {
+                parsedContext = JSON.parse(context);
+            } catch (e) {
+                document.getElementById("result").innerText = "Invalid JSON in context!";
+                return;
+            }
+
+            // Send rule and context to the backend API
+            const response = await fetch('/evaluate-rule', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ rule, context: parsedContext })
+            });
+
+            // Get the result from the response
+            const resultData = await response.json();
+            document.getElementById("result").innerText = `Result: ${resultData.result}`;
+        }
+    </script>
+
+</body>
+</html>
